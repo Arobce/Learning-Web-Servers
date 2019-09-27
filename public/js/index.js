@@ -1,5 +1,5 @@
 const printHellp = () => {
-    alert("Hellow");
+    console.log("Hellow");
 }
 
 window.onload = printHellp;
