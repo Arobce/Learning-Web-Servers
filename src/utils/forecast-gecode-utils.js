@@ -47,13 +47,13 @@ const getWeatherInfo = (address, weatherInfoCallback) => {
 const getWeatherForecast = (address, weatherInfoCallback) => {
     geocode.getGeocode(address, (geocodeData, errorMessage) => {
 
-        if (errorMessage) { weatherInfoCallback({},errorMessage) };
+        if (errorMessage) { weatherInfoCallback({error:errorMessage}) };
 
         forecast.getForecast(geocodeData, (forecastData, error) => {
 
-            if (errorMessage) { weatherInfoCallback({},errorMessage) };
+            if (errorMessage) { weatherInfoCallback({error:errorMessage}) };
 
-            weatherInfoCallback(_getWeatherForecastWithLocationObject(geocodeData,forecastData),);
+            weatherInfoCallback(_getWeatherForecastWithLocationObject(geocodeData,forecastData));
         })
     });
 }

@@ -44,15 +44,10 @@ app.get('/weather', (req, res) => {
 
     let address = req.query.address;
 
-    getWeatherForecast(address, (forecast,error) => {
-        if(error){
-            forecast.error = error;
-        }
+    getWeatherForecast(address, forecast => {
         forecast.address = address;
         res.send(forecast);
     })
-
-
 
 })
 
