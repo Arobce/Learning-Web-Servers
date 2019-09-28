@@ -35,6 +35,16 @@ app.get('/about', (req, res) => {
     });
 })
 
+app.get('/weather', (req, res) => {
+    if (!req.query.address) {
+        return res.send({ error : 'Address is required!!' });
+    }
+
+    let forecast = {query: req.query.address}
+    res.send(forecast)
+
+})
+
 app.get('/help', (req, res) => {
     res.render('help', {
         title: "Help Page",
@@ -43,13 +53,13 @@ app.get('/help', (req, res) => {
 })
 
 app.get("/help/*", (req, res) => {
-    res.render('404',{
+    res.render('404', {
         message: "Help Article not found"
     })
 })
 
 app.get('*', (req, res) => {
-    res.render('404',{
+    res.render('404', {
         message: "Page not found"
     })
 })
