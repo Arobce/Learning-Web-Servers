@@ -4,6 +4,8 @@ const express = require("express");
 const app = express();
 const hbs = require('hbs');
 
+const forGeoUtils = require("./utils/forecast-gecode-utils");
+
 const configPaths = {
     publicPath: path.join(__dirname, "../public"),
     viewsPath: path.join(__dirname, "../templates/views"),
