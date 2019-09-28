@@ -51,7 +51,7 @@ const getWeatherForecast = (address, weatherInfoCallback) => {
 
         forecast.getForecast(geocodeData, (forecastData, error) => {
 
-            if (errorMessage) { weatherInfoCallback({error:errorMessage}) };
+            if (errorMessage) { weatherInfoCallback({error:error}) };
 
             weatherInfoCallback(_getWeatherForecastWithLocationObject(geocodeData,forecastData));
         })
