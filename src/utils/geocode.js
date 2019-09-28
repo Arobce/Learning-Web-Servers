@@ -9,7 +9,7 @@ const getGeocode = (address, geoCodeCallback) => {
         json: true
     }
 
-    requestUtils.makeRequestAndGetRequestDataAndError(requestOptions, (error, {body}) => {
+    requestUtils.makeRequestAndGetRequestDataAndError(requestOptions, (error, { body }) => {
 
         let data = {
             latitude: 0,
@@ -20,7 +20,7 @@ const getGeocode = (address, geoCodeCallback) => {
         let errorMessage = errorUtils.checkErrorForGeocodingRequests(error, body);
 
         if (!errorMessage) {
-            let {features} = body;
+            let { features } = body;
             let latitude = features[0].center[1];
             let longitude = features[0].center[0];
             let location = features[0].place_name;
@@ -37,8 +37,10 @@ const getGeocode = (address, geoCodeCallback) => {
     })
 }
 
-const printCurrentLocation = ({location}) => console.log(location);
+const printCurrentLocation = ({ location }) => console.log(location);
+
+const getCurrentLocation = ({ location }) => location;
 
 const _getGeocodeApiLink = (address) => "https://api.mapbox.com/geocoding/v5/mapbox.places/" + encodeURIComponent(address) + ".json?access_token=pk.eyJ1IjoiYXJvYmNlIiwiYSI6ImNqeDhqZXIwbjBsczEzcnF1cjNma3VhNHcifQ.IqytwuTwvYV1ftFptax9dA&limit=1";
 
-module.exports = {getGeocode, printCurrentLocation};
+module.exports = { getGeocode, printCurrentLocation, getCurrentLocation };

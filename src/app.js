@@ -4,7 +4,7 @@ const express = require("express");
 const app = express();
 const hbs = require('hbs');
 
-const forGeoUtils = require("./utils/forecast-gecode-utils");
+const { getWeatherForecast } = require("./utils/forecast-gecode-utils");
 
 const configPaths = {
     publicPath: path.join(__dirname, "../public"),
@@ -39,11 +39,20 @@ app.get('/about', (req, res) => {
 
 app.get('/weather', (req, res) => {
     if (!req.query.address) {
-        return res.send({ error : 'Address is required!!' });
+        return res.send({ error: 'Address is required!!' });
     }
 
-    let forecast = {query: req.query.address}
-    res.send(forecast)
+    let address = req.query.address;
+
+    getWeatherForecast(address, (forecast,error) => {
+        if(error){
+            forecast.error = error;
+        }
+        forecast.address = address;
+        res.send(forecast);
+    })
+
+
 
 })
 

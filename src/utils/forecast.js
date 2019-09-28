@@ -19,9 +19,11 @@ const getForecast = ({latitude,longitude}, getWeatherInfoCallback) => {
 
 }
 
-const printWeatherForecast = ({daily,currently}) => console.log(daily.data[0].summary + ' It is currently ' + currently.temperature + ' degress out. There is a ' + currently.precipProbability + '% chance of rain.');
+const printWeatherForecast = ({daily,currently}) => console.log(getWeatherForecast(daily,currently));
+
+const getWeatherForecast = ({daily,currently}) => daily.data[0].summary + ' It is currently ' + currently.temperature + ' degress out. There is a ' + currently.precipProbability + '% chance of rain.';
 
 
 const _getWeatherInfoAPILink = (lat,lng) => "https://api.darksky.net/forecast/f5a869fdd5d36d6bed5645f2355a1a5c/" + lat + "," + lng + "?units=si"
 
-module.exports = { getForecast, printWeatherForecast };
+module.exports = { getForecast, printWeatherForecast, getWeatherForecast };
