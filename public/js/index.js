@@ -1,5 +1,5 @@
 
-const baseApiUrl = "http://localhost:3000/weather?address=";
+const baseApiUrl = "/weather?address=";
 const weatherForm = document.querySelector(".form");
 
 const locationNode = document.querySelector(".location");
